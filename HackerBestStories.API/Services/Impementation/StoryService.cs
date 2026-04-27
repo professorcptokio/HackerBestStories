@@ -4,19 +4,25 @@ namespace HackerBestStories.API.Services.Impementation
 {
     public class StoryService : IStoryService
     {
+        private const string CacheKey = "best_stories";
+        private const int CacheDurationMinutes = 5;
         private const int MinCount = 1;
         private const int MaxCount = 500;
         private static readonly DateTime UnixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
         private readonly IHackerNewsExternalService _externalService;
         private readonly ILogger<StoryService> _logger;
+        private readonly ICacheService _cache;
 
         public StoryService(
             IHackerNewsExternalService externalService,
-            ILogger<StoryService> logger)
+            ILogger<StoryService> logger,
+            ICacheService cache)
         {
             _externalService = externalService ?? throw new ArgumentNullException(nameof(externalService));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _cache = cache ?? throw new ArgumentNullException(nameof(cache));
+
         }
 
         public async Task<List<GetStoriesResponse>> GetBestStoriesAsync(int count)
@@ -38,8 +44,23 @@ namespace HackerBestStories.API.Services.Impementation
         }
 
         private async Task<int[]> GetBestStoriesIdsAsync()
-        {            
-            return await _externalService.GetBestStoriesIdsAsync();
+        {
+            var cachedIds = await _cache.GetAsync<int[]>(CacheKey);
+            if (cachedIds is not null)
+            {
+                _logger.LogInformation("Retrieved story IDs from Redis cache");
+                return cachedIds;
+            }
+            var ids = await _externalService.GetBestStoriesIdsAsync();
+
+            await _cache.SetAsync(
+                CacheKey,
+                ids,
+                TimeSpan.FromMinutes(CacheDurationMinutes));
+
+            _logger.LogInformation("Cached story IDs in Redis for {Minutes} minutes", CacheDurationMinutes);
+
+            return ids;
         }
 
         private async Task<List<GetStoriesResponse>> FetchStoriesAsync(int[] storyIds)

@@ -1,6 +1,7 @@
 using HackerBestStories.API.Services;
 using HackerBestStories.API.Services.Impementation;
 using Scalar.AspNetCore;
+using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,12 @@ builder.Services.AddScoped<IHackerNewsExternalService>(sp =>
         sp.GetRequiredService<IHttpClientFactory>().CreateClient(),
         builder.Configuration,
         sp.GetRequiredService<ILogger<HackerNewsExternalService>>()));
+
+var redisConnection = builder.Configuration["REDIS_CONNECTION"] ?? "localhost:6379";
+builder.Services.AddSingleton<IConnectionMultiplexer>(
+    ConnectionMultiplexer.Connect(redisConnection));
+
+builder.Services.AddScoped<ICacheService, RedisCacheService>();
 
 builder.Services.AddScoped<IStoryService, StoryService>();
 
