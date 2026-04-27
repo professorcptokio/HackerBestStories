@@ -34,11 +34,6 @@ dotnet run
 dotnet build
 ```
 
-### Testes
-```bash
-dotnet test
-```
-
 ### Publicar
 ```bash
 dotnet publish -c Release
