@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>HackerBestStories.Benchmark.StoryBenchmark-20260427-215534</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet v0.15.8, Windows 11 (10.0.26200.8246/25H2/2025Update/HudsonValley2)
+AMD Ryzen 7 5825U with Radeon Graphics 2.00GHz, 1 CPU, 16 logical and 8 physical cores
+.NET SDK 10.0.201
+  [Host]     : .NET 10.0.5 (10.0.5, 10.0.526.15411), X64 RyuJIT x86-64-v3 [AttachedDebugger]
+  DefaultJob : .NET 10.0.5 (10.0.5, 10.0.526.15411), X64 RyuJIT x86-64-v3
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>Method </th><th>Mean</th><th>Error</th><th>StdDev</th><th>Median</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>GetStories10</td><td>242.3 ms</td><td>3.36 ms</td><td>2.81 ms</td><td>242.0 ms</td><td>4.32 KB</td>
+</tr><tr><td>GetStories50</td><td>245.4 ms</td><td>4.89 ms</td><td>4.34 ms</td><td>243.9 ms</td><td>12.77 KB</td>
+</tr><tr><td>GetStories100</td><td>250.0 ms</td><td>4.33 ms</td><td>7.12 ms</td><td>246.1 ms</td><td>23.59 KB</td>
+</tr></tbody></table>
+</body>
+</html>

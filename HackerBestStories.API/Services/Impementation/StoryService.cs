@@ -1,4 +1,4 @@
-﻿using HackerBestStories.API.DTOs;
+﻿using HackerBestStories.DTOs;
 
 namespace HackerBestStories.API.Services.Impementation
 {

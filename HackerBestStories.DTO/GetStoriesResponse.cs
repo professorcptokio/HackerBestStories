@@ -1,4 +1,4 @@
-﻿namespace HackerBestStories.API.DTOs
+﻿namespace HackerBestStories.DTOs
 { 
     public record GetStoriesResponse(
         string Title,

@@ -1,4 +1,6 @@
-﻿namespace HackerBestStories.API.DTOs
+﻿using System.Text.Json.Serialization;
+
+namespace HackerBestStories.DTOs
 {
        public record HackerNewsStoryDto(
          int Id,

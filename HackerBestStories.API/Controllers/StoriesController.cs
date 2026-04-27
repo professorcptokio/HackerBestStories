@@ -1,4 +1,4 @@
-using HackerBestStories.API.DTOs;
+using HackerBestStories.DTOs;
 using HackerBestStories.API.Services;
 using Microsoft.AspNetCore.Mvc;
 

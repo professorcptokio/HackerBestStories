@@ -37,3 +37,25 @@ dotnet test
 ```bash
 dotnet publish -c Release
 ```
+
+## Benchmark
+
+### Executar Benchmark
+
+O projeto inclui benchmarks de performance usando **BenchmarkDotNet**. Para executar:
+
+```bash
+cd HackerBestStories.Benchmark
+dotnet run -c Release
+```
+
+### Configuração do Benchmark
+
+Os resultados são exportados automaticamente em:
+- JSON: `BenchmarkDotNet.Artifacts/`
+- Markdown: `BenchmarkDotNet.Artifacts/`
+- HTML: `BenchmarkDotNet.Artifacts/`
+
+### Resultado - Sem Cache
+
+![Benchmark Results](withoutcache.png)

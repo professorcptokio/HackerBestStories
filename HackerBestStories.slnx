@@ -1,3 +1,5 @@
 <Solution>
   <Project Path="HackerBestStories.API/HackerBestStories.API.csproj" />
+  <Project Path="HackerBestStories.Benchmark/HackerBestStories.Benchmark.csproj" />
+  <Project Path="HackerBestStories.DTO/HackerBestStories.DTO.csproj" />
 </Solution>
